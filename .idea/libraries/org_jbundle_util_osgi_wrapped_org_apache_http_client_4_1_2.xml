@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
