@@ -1,2 +1,2 @@
 # QiniuDemo
-Qiniu demo based on qiniu javascript sdk.
+A demo based on qiniu javascript sdk.
