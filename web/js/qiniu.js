@@ -2,6 +2,19 @@
 /*global ActiveXObject */
 /*exported Qiniu */
 
+/*
+获取input file 文件名
+ */
+function getFileName(obj){
+    var fileName = "";
+    if (typeof fileName != "undefined"){
+        fileName = $(obj).val().split("\\").pop();
+        fileName = fileName.substring(0, fileName.lastIndexOf("."));
+    }
+    return fileName;
+}
+
+
 function QiniuJsSDK() {
 
 
@@ -284,11 +297,14 @@ function QiniuJsSDK() {
                     if (ajax.readyState === 4 && ajax.status === 200) {
                         var res = that.parseJSON(ajax.responseText);
                         that.token = res.uptoken;
+                        //Form init.
+                        $("#token").val(that.token);
                     }
                 };
                 ajax.send();
             } else {
                 that.token = op.uptoken;
+                $("#token").val(that.token);
             }
         };
 

@@ -14,11 +14,11 @@ import java.io.InputStream;
 /**
  * Created by jianghao on 15/2/13.
  */
-public class UploadUtil {
+public class UploadUtil extends ConfigInfo{
 
     public static PutRet upload(InputStream input){
-        Mac mac = new Mac(ConfigInfo.ACCESS_KEY,ConfigInfo.SECRET_KEY);
-        PutPolicy policy = new PutPolicy(ConfigInfo.BUCKET_NAME);
+        Mac mac = new Mac(ACCESS_KEY,SECRET_KEY);
+        PutPolicy policy = new PutPolicy(BUCKET_NAME);
         String upToken = null;
         //获取token
         try {

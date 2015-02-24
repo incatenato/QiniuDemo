@@ -194,13 +194,13 @@ FileProgress.prototype.setComplete = function(up, info) {
     if (res.url) {
         url = res.url;
         str = "<div><strong>Link:</strong><a href=" + res.url + " target='_blank' > " + res.url + "</a></div>" +
-            "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";
+            "<div><strong>Hash:</strong>" + res.hash + "</div>";
     } else {
         var domain = up.getOption('domain');
         url = domain + encodeURI(res.key);
         var link = domain + res.key;
         str = "<div><strong>Link:</strong><a href=" + url + " target='_blank' > " + link + "</a></div>" +
-            "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";
+            "<div><strong>Hash:</strong>" + res.hash + "</div>";
     }
 
     /*
@@ -324,7 +324,7 @@ FileProgress.prototype.setComplete = function(up, info) {
                 fopArr.push({
                     fop: 'watermark',
                     mode: 1,
-                    image: 'http://www.b1.qiniudn.com/images/logo-2.png',
+                    image: 'http://7vzmpy.com1.z0.glb.clouddn.com/new_logo.png',
                     dissolve: 100,
                     gravity: 'SouthEast',
                     dx: 100,
@@ -347,12 +347,13 @@ FileProgress.prototype.setComplete = function(up, info) {
 
             var ie = Qiniu.detectIEVersion();
             if (!(ie && ie <= 9)) {
-                var exif = Qiniu.exif(res.key);
-                if (exif) {
-                    var exifLink = $('<a href="" target="_blank">查看exif</a>');
-                    exifLink.attr('href', url + '?exif');
-                    infoWrapper.append(exifLink);
-                }
+                //获取图片EXIF信息
+                //var exif = Qiniu.exif(res.key);
+                //if (exif) {
+                //    var exifLink = $('<a href="" target="_blank">查看exif</a>');
+                //    exifLink.attr('href', url + '?exif');
+                //    infoWrapper.append(exifLink);
+                //}
 
                 var imageInfo = Qiniu.imageInfo(res.key);
                 var infoArea = $('<div/>');

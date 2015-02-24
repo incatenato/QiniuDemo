@@ -14,4 +14,12 @@
         <servlet-name>/Token</servlet-name>
         <url-pattern>/token</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>/List</servlet-name>
+        <servlet-class>qiniu.demo.service.FileManageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>/List</servlet-name>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
 </web-app>
