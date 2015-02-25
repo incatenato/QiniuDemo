@@ -14,16 +14,13 @@ $(function() {
             window.open(host + key);
         });
         $('#tbl').on('click', 'td .btn-danger', function() {
-            var id = $(this).closest('tr').find('td:nth-child(1)').html();
+            var key = $(this).closest('tr').find('td:nth-child(1)').html();
             if(confirm('really?')){
-                //$.post("/delete",{id:id},function(data){
-                //    if(data=='success'){
-                //        window.location.href='/device/show';
-                //    }
-                //    else{
-                //        alert('Fail...');
-                //    }
-                //})
+                $.post("/delete",{bucket:"demo",key:key},function(data){
+                    for(var key in data){
+                        console.log(data[key]);
+                    }
+                })
             }
             else{
                 return;

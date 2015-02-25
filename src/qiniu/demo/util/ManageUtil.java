@@ -1,6 +1,8 @@
 package qiniu.demo.util;
 
 import com.qiniu.api.auth.digest.Mac;
+import com.qiniu.api.net.CallRet;
+import com.qiniu.api.rs.RSClient;
 import com.qiniu.api.rsf.ListItem;
 import com.qiniu.api.rsf.ListPrefixRet;
 import com.qiniu.api.rsf.RSFClient;
@@ -36,5 +38,13 @@ public class ManageUtil extends ConfigInfo {
             //TODO: error handler
         }
         return all;
+    }
+
+    public static boolean deleteFile(String bucket, String key){
+        Mac mac = new Mac(ACCESS_KEY, SECRET_KEY);
+
+        RSClient client = new RSClient(mac);
+        CallRet ret = client.delete(bucket, key);
+        return ret.ok();
     }
 }

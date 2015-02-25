@@ -22,4 +22,12 @@
         <servlet-name>/List</servlet-name>
         <url-pattern>/list</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>/Delete</servlet-name>
+        <servlet-class>qiniu.demo.service.DeleteFileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>/Delete</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
 </web-app>
