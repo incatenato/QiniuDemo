@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,5 +54,15 @@ public class FileManageServlet extends HttpServlet {
         out.print(sb);
         out.flush();
         out.close();
+    }
+
+    /**
+     * 日期字符串格式化
+     * @param dateStr
+     * @return formatString
+     */
+    public String dateStrFormat(long dateStr){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date(dateStr));
     }
 }

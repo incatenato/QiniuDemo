@@ -4,5 +4,6 @@ module.exports = {
     'Bucket_Name': 'demo',
     'Port': 19110,
     'Uptoken_Url': '/uptoken',
-    'Domain': 'http://qiniu-plupload.qiniudn.com/'
+    'Domain': 'http://qiniu-plupload.qiniudn.com/',
+    'Host':'http://7vzmpy.com1.z0.glb.clouddn.com/'
 };

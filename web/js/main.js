@@ -4,44 +4,46 @@
 /*global hljs */
 
 var sourceTable;
+var host = "http://7vzmpy.com1.z0.glb.clouddn.com/";
 
 $(function() {
     $.post("/list",{bucket:"demo",limit:"-1"},function(data){
-        //$('#tbl').on('click', 'td .blue', function() {
-        //    var id = $(this).closest('tr').find('td:nth-child(1)').html();
-        //    window.location.href='/device/'+id+'/edit';
-        //});
-        //$('#tbl').on('click', 'td .red', function() {
-        //    var id = $(this).closest('tr').find('td:nth-child(1)').html();
-        //    if(confirm('really?')){
-        //        $.post("/delete",{id:id},function(data){
-        //            if(data=='success'){
-        //                window.location.href='/device/show';
-        //            }
-        //            else{
-        //                alert('Fail...');
-        //            }
-        //        })
-        //    }
-        //    else{
-        //        return;
-        //    }
-        //});
+
+        $('#tbl').on('click', 'td .btn-info', function() {
+            var key = $(this).closest('tr').find('td:nth-child(1)').html();
+            window.open(host + key);
+        });
+        $('#tbl').on('click', 'td .btn-danger', function() {
+            var id = $(this).closest('tr').find('td:nth-child(1)').html();
+            if(confirm('really?')){
+                //$.post("/delete",{id:id},function(data){
+                //    if(data=='success'){
+                //        window.location.href='/device/show';
+                //    }
+                //    else{
+                //        alert('Fail...');
+                //    }
+                //})
+            }
+            else{
+                return;
+            }
+        });
         sourceTable = $("#tbl").dataTable({
             "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
             "bPaginate": false,
             "aaData" :data,
             "aoColumns": [
                 { "mDataProp": 0,"sWidth": "15%" },
-                { "mDataProp": 1,"sWidth": "20%" },
+                { "mDataProp": 1,"sWidth": "10%" },
                 { "mDataProp": 2,"sWidth": "10%" },
                 { "mDataProp": 3,"sWidth": "10%" },
                 { "mDataProp": 4, "sClass": "center","sWidth": "10%" },
                 {
                     "mData": null,
                     "sClass": "center",
-                    "sWidth": "12%",
-                    "sDefaultContent": '<a class="btn blue" href="#"><i class="icon-edit icon-white"></i>VIEW</a>&nbsp;&nbsp;<a class="btn green" href="#"><i class="icon-arrow-up icon-white"></i>DELETE</a>'
+                    "sWidth": "25%",
+                    "sDefaultContent": '<a class="btn btn-info" href="#"><i class="icon-edit icon-white"></i>预览</a>&nbsp;&nbsp;<a class="btn btn-danger" href="#"><i class="icon-arrow-up icon-white"></i>删除</a>'
                 }
             ],
             "bDestroy" : true,
