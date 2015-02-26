@@ -2,6 +2,7 @@ package qiniu.demo.util;
 
 import com.qiniu.api.auth.digest.Mac;
 import com.qiniu.api.net.CallRet;
+import com.qiniu.api.rs.Entry;
 import com.qiniu.api.rs.RSClient;
 import com.qiniu.api.rsf.ListItem;
 import com.qiniu.api.rsf.ListPrefixRet;
@@ -40,11 +41,34 @@ public class ManageUtil extends ConfigInfo {
         return all;
     }
 
+    /**
+     * 删除单个文件
+     * @param bucket
+     * @param key
+     * @return boolean
+     */
     public static boolean deleteFile(String bucket, String key){
         Mac mac = new Mac(ACCESS_KEY, SECRET_KEY);
 
         RSClient client = new RSClient(mac);
         CallRet ret = client.delete(bucket, key);
         return ret.ok();
+    }
+
+    /**
+     * 获取单个文件状态
+     * @param bucket
+     * @param key
+     * @return entry
+     */
+    public static Entry getFileStat(String bucket, String key){
+        Mac mac = new Mac(ACCESS_KEY, SECRET_KEY);
+        RSClient client = new RSClient(mac);
+        return client.stat(bucket, key);
+    }
+
+    public static void main(String[] args) {
+        Entry entry = getFileStat("demo", "zzz.mp4");
+        System.out.println(entry.getStatusCode());
     }
 }

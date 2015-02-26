@@ -9,40 +9,42 @@ var host = "http://7vzmpy.com1.z0.glb.clouddn.com/";
 $(function() {
     $.post("/list",{bucket:"demo",limit:"-1"},function(data){
 
+        $('#tbl tbody').on( 'click', 'tr', function () {
+            $(this).toggleClass('selected');
+        } );
+
         $('#tbl').on('click', 'td .btn-info', function() {
             var key = $(this).closest('tr').find('td:nth-child(1)').html();
             window.open(host + key);
         });
         $('#tbl').on('click', 'td .btn-danger', function() {
-            var id = $(this).closest('tr').find('td:nth-child(1)').html();
+            var key = $(this).closest('tr').find('td:nth-child(1)').html();
             if(confirm('really?')){
-                //$.post("/delete",{id:id},function(data){
-                //    if(data=='success'){
-                //        window.location.href='/device/show';
-                //    }
-                //    else{
-                //        alert('Fail...');
-                //    }
-                //})
+                $.post("/delete",{bucket:"demo",key:key},function(data){
+                    for(var key in data){
+                        console.log(data[key]);
+                    }
+                })
             }
             else{
                 return;
             }
         });
+
         sourceTable = $("#tbl").dataTable({
             "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
             "bPaginate": false,
             "aaData" :data,
             "aoColumns": [
                 { "mDataProp": 0,"sWidth": "15%" },
-                { "mDataProp": 1,"sWidth": "10%" },
+                { "mDataProp": 1,"sWidth": "15%" },
                 { "mDataProp": 2,"sWidth": "10%" },
                 { "mDataProp": 3,"sWidth": "10%" },
                 { "mDataProp": 4, "sClass": "center","sWidth": "10%" },
                 {
                     "mData": null,
                     "sClass": "center",
-                    "sWidth": "25%",
+                    "sWidth": "20%",
                     "sDefaultContent": '<a class="btn btn-info" href="#"><i class="icon-edit icon-white"></i>预览</a>&nbsp;&nbsp;<a class="btn btn-danger" href="#"><i class="icon-arrow-up icon-white"></i>删除</a>'
                 }
             ],
@@ -52,6 +54,27 @@ $(function() {
             "bSort": true,
             "bLengthChange": false,
             "bStateSave": false
+        });
+
+        //$('#delete_btn').click( function () {
+        //    alert(sourceTable.rows('.selected').data().length +' row(s) selected' );
+        //});
+        $("#searchBtn").click(function(){
+            var searchKey = $("#searchKey").val();
+            if (searchKey == ""){
+                return;
+            }
+            $.post("/getStatus",{bucket:"demo", key:searchKey},function(data){
+                var html = "";
+                if (JSON.stringify(data).length <= 2){
+                    html = "noting.";
+                }
+                else{
+                    html = JSON.stringify(data);
+                }
+                $("#searchResult").html("I got:" + html);
+                $("#searchResult").removeAttr("hidden");
+            })
         });
     });
 

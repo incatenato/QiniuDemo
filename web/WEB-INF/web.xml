@@ -30,4 +30,12 @@
         <servlet-name>/Delete</servlet-name>
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>/GetStatus</servlet-name>
+        <servlet-class>qiniu.demo.service.GetFileStat</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>/GetStatus</servlet-name>
+        <url-pattern>/getStatus</url-pattern>
+    </servlet-mapping>
 </web-app>

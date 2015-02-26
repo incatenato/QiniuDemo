@@ -84,6 +84,23 @@
     </div>
     <div class="body">
         <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchKey" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="searchBtn" type="button">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+            <div class="clearfix">
+                <div class="alert alert-success" role="alert" id="searchResult" hidden="hidden"></div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="col-md-12">
             <div class="portlet-body">
                 <table class="table table-striped table-bordered bootstrap-datatable datatable dataTable" id="tbl" aria-describedby="DataTables_Table_0_info" style="width: 100%">
                     <thead>
@@ -100,6 +117,7 @@
                     </tbody>
                 </table>
             </div>
+            <button type="button" id="delete_btn" class="btn btn-info btn-danger">批量删除</button>
         </div>
     </div>
     <div class="modal fade body" id="myModal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
